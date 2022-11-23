@@ -1,4 +1,6 @@
 ## @ali-sanad/random-fruits
+Get random fruits names
+
 
 ### How to use
 
