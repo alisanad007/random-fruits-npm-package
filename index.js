@@ -1,4 +1,4 @@
-const {fruits} = require('./fruits-data');
+const {fruits} = require('./assets/fruits-data');
 
 const {
   generateRandomFruitListData,
