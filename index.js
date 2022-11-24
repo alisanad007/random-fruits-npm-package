@@ -3,30 +3,31 @@ const {fruits} = require('./assets/fruits-data');
 const {
   generateRandomFruitListData,
   generateRandomNumber,
+  ASCII_NUMBER_FOR_UPPER_CASE_A_LETTER,
+  ASCII_NUMBER_FOR_UPPER_CASE_Z_LETTER,
 } = require('./utils/helper');
 
 const randomFruit = () => {
-  let {fruitsList} = generateRandomFruitListData(fruits);
+  const {fruitsList} = generateRandomFruitListData(fruits);
   return fruitsList[generateRandomNumber(fruitsList.length)];
 };
 
-const randomFruits = (N = 5) => {
+const randomFruits = (numberOfFruits = 5) => {
   let {currentFruitAsciiNumber, currentFruitGroupLetter, fruitsList} =
     generateRandomFruitListData(fruits);
 
-  while (fruitsList.length < N) {
-    if (currentFruitAsciiNumber < 90) {
+  while (fruitsList.length < numberOfFruits) {
+    if (currentFruitAsciiNumber < ASCII_NUMBER_FOR_UPPER_CASE_Z_LETTER) {
       currentFruitAsciiNumber++;
-      currentFruitGroupLetter = String.fromCharCode(currentFruitAsciiNumber);
-      fruitsList = [...fruitsList, ...fruits[currentFruitGroupLetter]];
     } else {
-      currentFruitAsciiNumber = 65;
-      currentFruitGroupLetter = String.fromCharCode(currentFruitAsciiNumber);
-      fruitsList = [...fruitsList, ...fruits[currentFruitGroupLetter]];
+      currentFruitAsciiNumber = ASCII_NUMBER_FOR_UPPER_CASE_A_LETTER;
     }
+
+    currentFruitGroupLetter = String.fromCharCode(currentFruitAsciiNumber);
+    fruitsList = [...fruitsList, ...fruits[currentFruitGroupLetter]];
   }
 
-  return fruitsList.slice(0, N);
+  return fruitsList.slice(0, numberOfFruits);
 };
 
 module.exports = {
